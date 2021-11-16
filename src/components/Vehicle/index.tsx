@@ -4,7 +4,7 @@ type VehicleProps = {
   name: string
 }
 
-export const Vehicle: React.VFC<VehicleProps> = ({ name }) => {
+const Vehicle: React.VFC<VehicleProps> = ({ name }) => {
 
   console.log(`renderizando o ${name}`)
 
@@ -15,3 +15,6 @@ export const Vehicle: React.VFC<VehicleProps> = ({ name }) => {
   )
 }
 
+const MemoizedVehicle = React.memo(Vehicle)
+
+export { MemoizedVehicle as Vehicle }
