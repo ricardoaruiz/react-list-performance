@@ -1,17 +1,27 @@
 import React from 'react'
 
-type VehicleProps = {
+import * as S from './styles'
+
+export type VehicleType = {
+  id: string
   name: string
 }
 
-const Vehicle: React.VFC<VehicleProps> = ({ name }) => {
+type VehicleProps = VehicleType & {
+  onDelete: (id: string) => void
+}
+
+const Vehicle: React.VFC<VehicleProps> = ({ id, name, onDelete }) => {
 
   console.log(`renderizando o ${name}`)
 
   return (
-    <li>
-      {name}
-    </li>
+    <S.Wrapper>
+      <S.Text>
+        {name}
+      </S.Text>
+      <S.DeleteButton role="button" onClick={() => onDelete(id)}/>      
+    </S.Wrapper>
   )
 }
 
