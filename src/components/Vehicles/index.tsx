@@ -28,6 +28,7 @@ export const Vehicles: React.FC = () => {
     <ul>
       {vehicles.map(({ id, name }) => (
         <Vehicle 
+          key={id}
           id={id} 
           name={name} onDelete={handleDeleteVehicleButtonClick} 
         />
