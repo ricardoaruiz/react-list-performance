@@ -1,5 +1,6 @@
 import React from 'react'
 import faker from 'faker'
+import { Car } from '@styled-icons/boxicons-regular/Car'
 import { Vehicle, VehicleType } from '../Vehicle'
 
 import * as S from './styles'
@@ -7,6 +8,8 @@ import * as S from './styles'
 faker.locale = 'pt_BR'
 
 export const Vehicles: React.FC = () => {
+
+  const [isAdding, setIsAdding] = React.useState(false)
 
   const [vehicles, setVehicles] = React.useState<VehicleType[]>([
     { id: faker.datatype.uuid(), name: 'Renegade' },
@@ -18,6 +21,11 @@ export const Vehicles: React.FC = () => {
       id: String(faker.datatype.uuid()),
       name: faker.vehicle.vehicle()
     }])
+    
+    setIsAdding(true)
+    setTimeout(() => {
+      setIsAdding(false)
+    }, 1000);
   }
 
   const handleDeleteVehicleButtonClick = React.useCallback((id: string) => {
@@ -35,7 +43,9 @@ export const Vehicles: React.FC = () => {
       ))}
       <S.Button 
         onClick={handleAddNewVehicleButtonClick}
+        className={isAdding ? 'animate__animated animate__headShake' : ''}
       >
+        <Car />
         Add new vehicle
       </S.Button>
     </ul>

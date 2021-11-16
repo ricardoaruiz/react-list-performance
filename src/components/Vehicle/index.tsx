@@ -13,14 +13,25 @@ type VehicleProps = VehicleType & {
 
 const Vehicle: React.VFC<VehicleProps> = ({ id, name, onDelete }) => {
 
-  console.log(`renderizando o ${name}`)
+  const [isCreation, setIsCreation] = React.useState(true)
+
+  const handleOnDelete = React.useCallback(() => {
+    setTimeout(() => {
+      onDelete(id)      
+    }, 1000);
+    setIsCreation(false)
+  }, [id, onDelete])
+
+  const itemClass = React.useMemo(() => {
+    return `animate__animated ${isCreation ? 'animate__backInLeft' : 'animate__backOutRight'}`
+  }, [isCreation])
 
   return (
-    <S.Wrapper>
+    <S.Wrapper className={itemClass}>
       <S.Text>
         {name}
       </S.Text>
-      <S.DeleteButton role="button" onClick={() => onDelete(id)}/>      
+      <S.DeleteButton role="button" onClick={handleOnDelete}/>      
     </S.Wrapper>
   )
 }
