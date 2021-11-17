@@ -11,10 +11,7 @@ export const Vehicles: React.FC = () => {
 
   const [isAdding, setIsAdding] = React.useState(false)
 
-  const [vehicles, setVehicles] = React.useState<VehicleType[]>([
-    { id: faker.datatype.uuid(), name: 'Renegade' },
-    { id: faker.datatype.uuid(), name: 'Kicks' },
-  ])
+  const [vehicles, setVehicles] = React.useState<VehicleType[]>([])
 
   const handleAddNewVehicleButtonClick = () => {
     setVehicles(state => [ ...state, {
