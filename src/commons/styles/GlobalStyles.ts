@@ -11,9 +11,13 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 62.5%;
   }
   
-  /* h1, h2, h3, h4, h5, h6 {
+  button {
     font-family: 'Poppins', sans-serif;
-    font-size: inherit;
-  } */
+    cursor: pointer;
+  }
+
+  .animate__animated.animate__hinge {
+    --animate-duration: 0.8s;
+  }
 
 `

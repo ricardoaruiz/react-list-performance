@@ -9,7 +9,7 @@ function App() {
   return (
     <S.Container>
       <GlobalStyles />
-      <S.Title>Vehicle list</S.Title>
+      <S.Title className="animate__animated animate__jackInTheBox">Vehicles</S.Title>
       <Vehicles />
     </S.Container>
   );

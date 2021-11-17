@@ -33,7 +33,14 @@ export const Vehicles: React.FC = () => {
   }, [])
 
   return (
-    <ul>
+    <S.Wrapper>
+      {!vehicles.length && (
+        <S.EmptyList 
+          className="animate__animated animate__backInDown"
+        >
+          Empty list
+        </S.EmptyList>
+      )}
       {vehicles.map(({ id, name }) => (
         <Vehicle 
           key={id}
@@ -48,6 +55,6 @@ export const Vehicles: React.FC = () => {
         <Car />
         Add new vehicle
       </S.Button>
-    </ul>
+    </S.Wrapper>
   )
 }

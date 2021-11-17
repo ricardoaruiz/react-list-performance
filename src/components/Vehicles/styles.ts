@@ -5,6 +5,11 @@ const buttonBgColor = '#80ced6';
 const buttonTextColor = '#fff';
 const buttonTextColorHovered = '#4f3222';
 
+export const Wrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+`
+
 export const Button = styled.button`
   border: none;
   padding: 0.5rem;
@@ -12,8 +17,10 @@ export const Button = styled.button`
   font-size: 1rem;
   font-weight: 600;
   border-radius: 5px;
-  cursor: pointer;
   color: ${buttonTextColor};
+  align-self: flex-end;
+  margin-top: 3rem;
+  box-shadow: 2px 4px 4px rgba(0,0,0,0.5);
 
   display: flex;
   justify-content: center;
@@ -37,9 +44,16 @@ export const Button = styled.button`
   &:active {
     background-color:  ${darken(0.2, buttonBgColor)};
     color: ${buttonTextColorHovered};
+    box-shadow: none;
 
     & svg {
       color: ${buttonTextColorHovered};
     }
   }
+`
+
+export const EmptyList = styled.h2`
+  text-align: center;
+  font-size: 2rem;
+  color: ${buttonBgColor}
 `

@@ -14,16 +14,17 @@ type VehicleProps = VehicleType & {
 const Vehicle: React.VFC<VehicleProps> = ({ id, name, onDelete }) => {
 
   const [isCreation, setIsCreation] = React.useState(true)
+  const [isMouseOnDeleteButton, setIsMouseOnDeleteButton] = React.useState(false)
 
   const handleOnDelete = React.useCallback(() => {
     setTimeout(() => {
       onDelete(id)      
-    }, 1000);
+    }, 1500);
     setIsCreation(false)
   }, [id, onDelete])
 
   const itemClass = React.useMemo(() => {
-    return `animate__animated ${isCreation ? 'animate__backInLeft' : 'animate__backOutRight'}`
+    return `animate__animated ${isCreation ? 'animate__backInLeft' : 'animate__hinge'}`
   }, [isCreation])
 
   return (
@@ -31,7 +32,13 @@ const Vehicle: React.VFC<VehicleProps> = ({ id, name, onDelete }) => {
       <S.Text>
         {name}
       </S.Text>
-      <S.DeleteButton role="button" onClick={handleOnDelete}/>      
+      <S.DeleteButton 
+        role="button" 
+        onClick={handleOnDelete} 
+        onMouseEnter={() => setIsMouseOnDeleteButton(true)} 
+        onMouseLeave={() => setIsMouseOnDeleteButton(false)}
+        className={isMouseOnDeleteButton ? 'animate__animated animate__rubberBand' : ''}
+      />      
     </S.Wrapper>
   )
 }
