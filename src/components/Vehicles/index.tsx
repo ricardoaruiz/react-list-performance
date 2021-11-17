@@ -7,22 +7,31 @@ import * as S from './styles'
 
 faker.locale = 'pt_BR'
 
+type VehicleResponse = {
+  name: string
+  rows: VehicleType[]
+}
+
 export const Vehicles: React.FC = () => {
 
   const [isAdding, setIsAdding] = React.useState(false)
-
   const [vehicles, setVehicles] = React.useState<VehicleType[]>([])
 
-  const handleAddNewVehicleButtonClick = () => {
-    setVehicles(state => [ ...state, {
-      id: String(faker.datatype.uuid()),
-      name: faker.vehicle.vehicle()
-    }])
+  const handleAddNewVehicleButtonClick = async () => {
+
+    const response = await fetch('https://fakercloud.com/api/v1/schema/R9LnJvK6?apiKey=249G7P4i&rows=1')
+    const vehicles: VehicleResponse = await response.json()
     
+    if (!vehicles.rows.length) return
+    
+    const vehicle = vehicles.rows[0]
+    setVehicles(state => [ ...state, { ...vehicle }])    
+
     setIsAdding(true)
     setTimeout(() => {
       setIsAdding(false)
     }, 1000);
+
   }
 
   const handleDeleteVehicleButtonClick = React.useCallback((id: string) => {

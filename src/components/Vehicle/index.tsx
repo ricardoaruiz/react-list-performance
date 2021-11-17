@@ -5,6 +5,8 @@ import * as S from './styles'
 export type VehicleType = {
   id: string
   name: string
+  model?: string
+  fuel?: string
 }
 
 type VehicleProps = VehicleType & {
