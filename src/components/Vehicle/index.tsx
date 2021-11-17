@@ -1,13 +1,7 @@
 import React from 'react'
+import { Vehicle as VehicleType } from 'commons/model/Vehicle'
 
 import * as S from './styles'
-
-export type VehicleType = {
-  id: string
-  name: string
-  model?: string
-  fuel?: string
-}
 
 type VehicleProps = VehicleType & {
   onDelete: (id: string) => void

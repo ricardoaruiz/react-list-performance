@@ -1,7 +1,8 @@
 import React from 'react'
 import faker from 'faker'
 import { Car } from '@styled-icons/boxicons-regular/Car'
-import { Vehicle, VehicleType } from '../Vehicle'
+import { Vehicle } from '../Vehicle'
+import { Vehicle as VehicleType } from 'commons/model/Vehicle'
 import { useFakerAPI } from 'commons/hooks/useFakerAPI'
 
 import * as S from './styles'
