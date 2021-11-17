@@ -14,16 +14,21 @@ export const Vehicles: React.FC = () => {
 
   const handleAddNewVehicleButtonClick = async () => {
 
-    const vehicle = await getVehicle()
-    
-    if (!vehicle) return
-    
-    setVehicles(state => [ ...state, { ...vehicle }])    
-
-    setIsAdding(true)
-    setTimeout(() => {
-      setIsAdding(false)
-    }, 1000);
+    try {
+      const vehicle = await getVehicle()
+      
+      if (!vehicle) return
+      
+      setVehicles(state => [ ...state, { ...vehicle }])    
+  
+      setIsAdding(true)
+      setTimeout(() => {
+        setIsAdding(false)
+      }, 1000);
+      
+    } catch(error) {
+      alert(`An error has ocurred on get new vehicle => ${error}`)
+    }
 
   }
 
