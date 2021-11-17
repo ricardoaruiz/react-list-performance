@@ -2,29 +2,24 @@ import React from 'react'
 import faker from 'faker'
 import { Car } from '@styled-icons/boxicons-regular/Car'
 import { Vehicle, VehicleType } from '../Vehicle'
+import { useFakerAPI } from 'commons/hooks/useFakerAPI'
 
 import * as S from './styles'
 
 faker.locale = 'pt_BR'
 
-type VehicleResponse = {
-  name: string
-  rows: VehicleType[]
-}
-
 export const Vehicles: React.FC = () => {
 
   const [isAdding, setIsAdding] = React.useState(false)
   const [vehicles, setVehicles] = React.useState<VehicleType[]>([])
+  const { getVehicle } = useFakerAPI()
 
   const handleAddNewVehicleButtonClick = async () => {
 
-    const response = await fetch('https://fakercloud.com/api/v1/schema/R9LnJvK6?apiKey=249G7P4i&rows=1')
-    const vehicles: VehicleResponse = await response.json()
+    const vehicle = await getVehicle()
     
-    if (!vehicles.rows.length) return
+    if (!vehicle) return
     
-    const vehicle = vehicles.rows[0]
     setVehicles(state => [ ...state, { ...vehicle }])    
 
     setIsAdding(true)
