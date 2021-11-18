@@ -38,7 +38,7 @@ export const useFakerAPI = (): UseFakeAPIType => {
     const response = await fakerAPI.get<VehicleResponse>(VEHICLE_URI)
 
     const { data: { rows, error, message } } = response;
-    error && handleError(message || 'Unknown error');
+    error && handleError(message || 'Unknown error!');
 
     return !rows.length ? null : rows[0]    
   }, [])
